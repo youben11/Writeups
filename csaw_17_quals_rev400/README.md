@@ -7,11 +7,11 @@ Did you know that x86 is really old? I found a really old Master Boot Record tha
 qemu-system-i386 -drive format=raw,file=main.bin
 ------------------------
 
-We were provided with a [main.bin](https://github.com/youben11/CSAW_2017_quals_rev400/blob/master/main.bin) which seems to be a DOS/MBR boot sector, so we have to disassamble it as 16-bit assembly.
+We were provided with a [main.bin](https://github.com/youben11/Writeups/blob/master/csaw_17_quals_rev400/main.bin) which seems to be a DOS/MBR boot sector, so we have to disassamble it as 16-bit assembly.
 
 I first started it in qemu to have an idea of what going on, It prints some byte to the screen and wait for the user to type a flag of 20char length and check if the flag is correct (it prints wrong :p).
 
-Then I started IDA to do some static analysis, the code was small since the MBR is limited to the size of 512bytes, the execution also start at the begining of the file wich is loaded at adr 0x7c00 (MBR stuff). After few readings, I realised that the important part of the code is in the range adr [0x066-0x0d3] the rest is some code for reading from the keyboard and printing the result and stuff like that, we will only focus on the important part (the entire assembly code is [there](https://github.com/youben11/CSAW_2017_quals_rev400/blob/master/main.ida) )
+Then I started IDA to do some static analysis, the code was small since the MBR is limited to the size of 512bytes, the execution also start at the begining of the file wich is loaded at adr 0x7c00 (MBR stuff). After few readings, I realised that the important part of the code is in the range adr [0x066-0x0d3] the rest is some code for reading from the keyboard and printing the result and stuff like that, we will only focus on the important part (the entire assembly code is [there](https://github.com/youben11/Writeups/blob/master/csaw_17_quals_rev400/main.ida) )
 
 0066 cmp     byte ptr ds:7DC8h, 13h ; check if the flag_length is < 19 and read more if yes, otherwise start checking the flag
 
@@ -57,7 +57,7 @@ b8 +      b6 + b5 + b4 + b3 + b2  + abs(b1-cst6) = res6
 
    b7 + b6 + b5 + b4 + b3 + b2  + abs(b1-cst7) = res7
 
-with some linear algebra and some brute_force we can solve it, I used numpy to get this done [keygen.py](https://github.com/youben11/CSAW_2017_quals_rev400/blob/master/keygen.py)
+with some linear algebra and some brute_force we can solve it, I used numpy to get this done [keygen.py](https://github.com/youben11/Writeups/blob/master/csaw_17_quals_rev400/keygen.py)
 there is two value for cst and dec, each one of them give 8byte independently, so just comment one of them
 
 the first value of cst and dec give 10 possibilites but the first one seems to be the good one, after reorder of them it gives "{4r3alz_"
