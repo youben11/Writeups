@@ -40,12 +40,12 @@ nc rev.chal.csaw.io 9004
 Elyk
 
 ##### Files attached:
-- [Makefile](/Makefile)
-- [part-3-server.py](/part-3-server.py)
-- [tacOS-base.bin](/tacOS-base.bin)
+- [Makefile](/csaw_18_quals_A_Tour_of_x86_part3/Makefile)
+- [part-3-server.py](/csaw_18_quals_A_Tour_of_x86_part3/part-3-server.py)
+- [tacOS-base.bin](/csaw_18_quals_A_Tour_of_x86_part3/tacOS-base.bin)
 
 ### Solution
 
-The code in [get_flag.py](/get_flag.py) and [payload.asm](/payload.asm) contains enough explanation.
+The code in [get_flag.py](/csaw_18_quals_A_Tour_of_x86_part3/get_flag.py) and [payload.nasm](/csaw_18_quals_A_Tour_of_x86_part3/payload.nasm) contains enough explanation.
 
 You can also change the payload to hlt at the beginning to get the flag for the part 2.
